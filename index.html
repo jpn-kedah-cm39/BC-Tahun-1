@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>国小华语 一年级 · Bahasa Cina Tahun 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#D7263D; --brand-d:#A81226; --brand-l:#FDE7EA; --brand-2:#F8B4BD;
+    --ink:#2b2b3a; --muted:#7b7b8c; --ok:#1faa59; --okl:#e4f7ec; --no:#e4572e; --nol:#fde8e2;
+    --card:#ffffff; --line:#efe3e5;
+    --sky1:#bfe6ff; --sky2:#eaf7ff;
+    --font-zh:'Noto Sans SC','PingFang SC','Microsoft YaHei','Hiragino Sans GB',sans-serif;
+    --font-lat:'Nunito',system-ui,-apple-system,sans-serif;
+    --font-head:'Fredoka','Noto Sans SC',sans-serif;
+    --r:18px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:var(--font-zh);color:var(--ink);
+    background:linear-gradient(180deg,var(--sky2),#fff 60%);
+    background-attachment:fixed;min-height:100vh;
+  }
+  #app{max-width:760px;margin:0 auto;padding:0 14px 40px}
+  .lat-en,.en,.sub{font-family:var(--font-lat);color:var(--muted);font-weight:700}
+  .sky{position:relative;overflow:hidden;border-radius:0 0 26px 26px;
+    background:linear-gradient(180deg,var(--sky1),var(--sky2));
+    padding:18px 16px 20px;margin:0 -14px 14px;box-shadow:0 6px 16px rgba(0,0,0,.06)}
+  .sun{position:absolute;top:10px;right:18px;width:54px;height:54px;border-radius:50%;
+    background:radial-gradient(circle at 40% 40%,#ffe680,#ffcb3a);box-shadow:0 0 0 8px rgba(255,203,58,.25);
+    animation:spin 30s linear infinite}
+  .cloud{position:absolute;background:#fff;border-radius:40px;opacity:.92}
+  .cloud:before,.cloud:after{content:"";position:absolute;background:#fff;border-radius:50%}
+  .c1{width:64px;height:20px;top:22px;left:18px;animation:float 9s ease-in-out infinite}
+  .c1:before{width:26px;height:26px;top:-12px;left:10px}
+  .c1:after{width:20px;height:20px;top:-8px;left:34px}
+  .c2{width:48px;height:16px;top:60px;left:120px;animation:float 12s ease-in-out infinite}
+  .c2:before{width:20px;height:20px;top:-9px;left:8px}
+  .c2:after{width:16px;height:16px;top:-6px;left:26px}
+  .head-row{position:relative;display:flex;align-items:center;gap:12px;z-index:2}
+  .mascot{font-size:48px;line-height:1;animation:bob 2.4s ease-in-out infinite;filter:drop-shadow(0 3px 3px rgba(0,0,0,.15))}
+  .title-zh{font-family:var(--font-head);font-weight:700;font-size:30px;color:var(--brand-d);line-height:1.05}
+  .title-zh b{font-family:var(--font-zh);font-weight:900}
+  .title-en{font-family:var(--font-lat);font-weight:800;color:#3a6ea5;font-size:13px;letter-spacing:.3px;margin-top:2px}
+  .slogan{font-size:15px;color:var(--brand);font-weight:700;margin-top:4px}
+  .slogan .en{font-size:11px;display:block}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-7px) rotate(2deg)}}
+  @keyframes float{0%,100%{transform:translateX(0)}50%{transform:translateX(16px)}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+  @media (prefers-reduced-motion:reduce){
+    .mascot,.cloud,.sun{animation:none!important}
+    *{animation-duration:.001s!important}
+  }
+  .menu{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+  .mbtn{display:flex;align-items:center;gap:14px;border:none;cursor:pointer;text-align:left;
+    background:var(--card);border-radius:var(--r);padding:16px;box-shadow:0 4px 0 var(--line),0 8px 18px rgba(0,0,0,.05);
+    transition:transform .08s}
+  .mbtn:active{transform:translateY(2px)}
+  .mbtn .ic{font-size:30px;width:50px;height:50px;display:grid;place-items:center;border-radius:14px;background:var(--brand-l);flex:0 0 auto}
+  .mbtn .zh{font-weight:900;font-size:19px}
+  .mbtn .en{font-size:12px;display:block;margin-top:2px}
+  .toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:14px 0}
+  .pill{border:none;cursor:pointer;background:#fff;border-radius:999px;padding:9px 14px;font-weight:800;font-family:var(--font-lat);
+    box-shadow:0 3px 0 var(--line);color:var(--brand-d);display:inline-flex;gap:7px;align-items:center}
+  .pill .zh{font-family:var(--font-zh)}
+  .pill:active{transform:translateY(2px)}
+  .note{background:#fff8e8;border:1px dashed #f0cf7a;border-radius:14px;padding:11px 13px;margin-top:14px;font-size:13.5px;color:#7a5a12}
+  .note .en{color:#9a7b3a;display:block;margin-top:3px;font-size:11.5px}
+  .acc{margin-top:4px}
+  .tema{background:#fff;border-radius:var(--r);margin-bottom:12px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.05)}
+  .tema-h{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;background:linear-gradient(90deg,var(--brand-l),#fff)}
+  .tema-h .ic{font-size:26px}
+  .tema-h .zh{font-weight:900;font-size:17px}
+  .tema-h .en{font-size:11.5px;display:block}
+  .tema-h .arrow{margin-left:auto;color:var(--brand);font-weight:900;transition:transform .2s}
+  .tema.open .tema-h .arrow{transform:rotate(90deg)}
+  .tema-body{display:none;padding:6px 12px 12px}
+  .tema.open .tema-body{display:block}
+  .unit{margin-top:8px}
+  .unit-name{font-weight:800;font-size:14px;color:var(--brand-d);margin:8px 4px 6px}
+  .unit-name .en{font-weight:700;font-size:11px}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .lcard{border:2px solid var(--line);background:#fff;border-radius:14px;padding:12px;cursor:pointer;text-align:left;position:relative;transition:transform .08s}
+  .lcard:active{transform:scale(.97)}
+  .lcard .ic{font-size:24px}
+  .lcard .zh{font-weight:900;font-size:15px;margin-top:4px}
+  .lcard .en{font-size:11px;display:block}
+  .lcard .best{font-size:11px;color:var(--ok);font-family:var(--font-lat);font-weight:800;margin-top:5px}
+  .lcard.sel{border-color:var(--brand);background:var(--brand-l)}
+  .lcard .tick{position:absolute;top:8px;right:8px;display:none;color:var(--brand);font-weight:900}
+  .lcard.sel .tick{display:block}
+  .startbar{position:sticky;bottom:10px;margin-top:14px;display:none}
+  .startbar.show{display:block}
+  .startbar button{width:100%;border:none;cursor:pointer;background:var(--brand);color:#fff;font-family:var(--font-head);
+    font-weight:700;font-size:18px;padding:15px;border-radius:16px;box-shadow:0 5px 0 var(--brand-d)}
+  .startbar button:active{transform:translateY(3px)}
+  .startbar button .en{font-size:12px;display:block;color:#ffd9de;font-family:var(--font-lat)}
+  .ex-top{display:flex;align-items:center;gap:10px;margin:10px 0 6px}
+  .prog{flex:1;height:14px;background:#f0e6e8;border-radius:999px;overflow:hidden}
+  .prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brand-2),var(--brand));transition:width .3s}
+  .stars{font-weight:900;font-family:var(--font-lat);color:#e8a300;white-space:nowrap}
+  .qcard{background:#fff;border-radius:22px;padding:18px 16px 22px;box-shadow:0 6px 18px rgba(0,0,0,.07);min-height:160px}
+  .arahan{font-size:13px;color:var(--brand-d);font-weight:800;margin-bottom:10px}
+  .arahan .en{font-weight:700;font-size:11px}
+  .emoji{font-size:62px;text-align:center;line-height:1.1;margin:6px 0 8px}
+  .stem{font-size:23px;font-weight:700;text-align:center;line-height:1.4}
+  .stem .en{display:block;font-size:13px;margin-top:5px}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:16px}
+  .opt{border:2px solid var(--line);background:#fff;border-radius:16px;padding:14px 8px;cursor:pointer;text-align:center;transition:transform .07s}
+  .opt:active{transform:scale(.97)}
+  .opt .zh{font-weight:900;font-size:22px;line-height:1.2}
+  .opt .en{display:block;font-size:11px;margin-top:3px}
+  .opt.ok{border-color:var(--ok);background:var(--okl)}
+  .opt.no{border-color:var(--no);background:var(--nol)}
+  .opt[disabled]{cursor:default;opacity:.96}
+  .kata-pin{font-family:var(--font-lat);font-weight:800;font-size:40px;text-align:center;letter-spacing:3px;color:var(--brand-d)}
+  .kata-pin .bl{color:var(--brand);border-bottom:4px solid var(--brand);padding:0 4px}
+  .opt.letter .zh{font-family:var(--font-lat);font-size:26px}
+  .padan{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+  .pcol{display:flex;flex-direction:column;gap:10px}
+  .pcell{border:2px solid var(--line);background:#fff;border-radius:14px;padding:12px;cursor:pointer;text-align:center;transition:transform .07s}
+  .pcell:active{transform:scale(.97)}
+  .pcell .big{font-size:34px}
+  .pcell .zh{font-weight:900;font-size:20px}
+  .pcell .en{display:block;font-size:11px}
+  .pcell.pick{border-color:var(--brand);background:var(--brand-l)}
+  .pcell.done{border-color:var(--ok);background:var(--okl);opacity:.65;cursor:default}
+  .pcell.shake{animation:shake .35s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  .susun-ans{min-height:60px;border:2px dashed var(--brand-2);border-radius:14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;padding:10px;background:#fff8f9}
+  .susun-tiles{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:12px}
+  .tile{border:2px solid var(--line);background:#fff;border-radius:12px;padding:10px 13px;cursor:pointer;font-weight:900;font-size:20px;transition:transform .07s}
+  .tile .en{display:block;font-size:10px;font-weight:700;color:var(--muted);text-align:center}
+  .tile:active{transform:scale(.95)}
+  .tile.used{opacity:.25;cursor:default}
+  .tile.inans{border-color:var(--brand-2);background:var(--brand-l)}
+  .feedback{text-align:center;font-weight:900;font-size:18px;margin-top:14px;min-height:24px}
+  .feedback.ok{color:var(--ok)}
+  .feedback.no{color:var(--no)}
+  .feedback .en{display:block;font-size:12px;font-weight:700}
+  .feedback small{display:block;font-family:var(--font-lat);font-weight:800;color:var(--muted);font-size:12px;margin-top:3px}
+  .nextbtn{width:100%;border:none;cursor:pointer;background:var(--brand);color:#fff;font-family:var(--font-head);font-weight:700;
+    font-size:18px;padding:14px;border-radius:16px;box-shadow:0 5px 0 var(--brand-d);margin-top:14px;display:none}
+  .nextbtn.show{display:block}
+  .nextbtn:active{transform:translateY(3px)}
+  .nextbtn .en{font-size:12px;color:#ffd9de;font-family:var(--font-lat)}
+  .finish{background:#fff;border-radius:24px;padding:26px 18px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.08);margin-top:10px;animation:pop .35s}
+  .badge{font-size:78px;line-height:1}
+  .ftitle{font-family:var(--font-head);font-weight:700;font-size:26px;color:var(--brand-d);margin-top:4px}
+  .ftitle .en{font-size:13px;display:block;color:var(--muted);font-family:var(--font-lat)}
+  .endstars{font-size:42px;margin:10px 0;letter-spacing:6px}
+  .endstars .off{filter:grayscale(1);opacity:.3}
+  .scoreline{font-size:18px;font-weight:800}
+  .scoreline .en{font-size:12px;display:block;color:var(--muted)}
+  .newrec{display:inline-block;margin-top:8px;background:#fff3d4;color:#b8860b;font-weight:900;padding:6px 14px;border-radius:999px;font-size:14px;animation:pop .4s}
+  .frow{display:flex;gap:12px;margin-top:18px}
+  .frow button{flex:1;border:none;cursor:pointer;border-radius:16px;padding:14px;font-family:var(--font-head);font-weight:700;font-size:16px}
+  .frow button .en{display:block;font-size:11px;font-family:var(--font-lat)}
+  .b-again{background:var(--brand);color:#fff;box-shadow:0 5px 0 var(--brand-d)}
+  .b-menu{background:#fff;color:var(--brand-d);box-shadow:0 5px 0 var(--line)}
+  .frow button:active{transform:translateY(3px)}
+  .footer{text-align:center;margin-top:20px;font-size:12px;color:var(--muted);font-family:var(--font-lat);line-height:1.5}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+"use strict";
+var SUBJ='bc', TAHUN=1;
+var KEY_REKOD = SUBJ+'_t'+TAHUN+'_rekod';
+var KEY_BUNYI = SUBJ+'_t'+TAHUN+'_bunyi';
+
+var TRANS={
+ '早安':'good morning','午安':'good afternoon','晚安':'good night','老师':'teacher','同学':'classmate',
+ '谢谢':'thank you','请坐':'please sit','起立':'stand up','校长':'principal','你好':'hello','大家好':'hi everyone',
+ '你们好':'hi (all)','朋友':'friend','班长':'monitor','校工':'school worker','巡察员':'prefect',
+ '名字':'name','今年':'this year','几岁':'how old','我':'I/me','你':'you','他':'he','叫':'called','是':'is',
+ '这':'this','那':'that','这是':'this is','那是':'that is','请':'please','坐':'sit','站起来':'stand up',
+ '坐下':'sit down','排队':'line up','安静':'be quiet','拍手':'clap','关门':'close door','请问':'excuse me',
+ '可以':'may/can','进来':'come in','出去':'go out','厕所':'toilet','喝水':'drink water','食堂':'canteen','回家':'go home',
+ '妈妈':'mum','爸爸':'dad','哥哥':'big brother','姐姐':'big sister','弟弟':'lil brother','妹妹':'lil sister','家人':'family','我的':'my',
+ '头':'head','手':'hand','脚':'foot','头发':'hair','眉毛':'eyebrow','眼睛':'eye','鼻子':'nose','嘴':'mouth','脸':'face','耳朵':'ear',
+ '桌子':'desk','椅子':'chair','书':'book','笔':'pen','书包':'school bag','尺':'ruler',
+ '红':'red','黄':'yellow','蓝':'blue','绿':'green','白':'white','黑':'black','橙色':'orange','紫色':'purple','灰色':'grey','褐色':'brown','粉红色':'pink','颜色':'colour',
+ '唱歌':'sing','画画':'draw','看书':'read','看':'look','游泳':'swim','跑步':'run','踢足球':'football','打羽毛球':'badminton','骑自行车':'cycle','跳舞':'dance',
+ '天':'sky','云':'cloud','花':'flower','草':'grass','树':'tree','太阳':'sun','风':'wind','雨':'rain','彩虹':'rainbow',
+ '猫':'cat','兔子':'rabbit','鱼':'fish','鸡':'chicken','鸭':'duck','虫':'insect','鸟':'bird','大':'big','小':'small','一只':'one (animal)',
+ '面包':'bread','包子':'bun','面':'noodles','炒饭':'fried rice','咖喱角':'curry puff','椰浆饭':'nasi lemak','印度煎饼':'roti canai','点心':'dim sum','拉茶':'teh tarik','吃':'eat',
+ '会':'can','笑':'smile','长大':'grow up','上学':'go to school','请安':'greet','学会':'learn to','玩':'play','在':'-ing',
+ '一':'one','二':'two','三':'three','四':'four','五':'five','六':'six','七':'seven','八':'eight','九':'nine','十':'ten',
+ '爱':'love','有':'have','和':'and','也':'also','好':'good','了':'(done)','今天':'today','天气':'weather','我们':'we','一起':'together','公园':'park',
+ '安安':'An An','同同':'Tong Tong','友那':'Yuna'
+};
+
+function emQ(em,zh,en,opts){ return {kind:'em',em:em,teks:zh,en:en,pilihan:opts.slice(),jwp:0}; }
+function teksQ(zh,en,opts){ return {kind:'teks',teks:zh,en:en,pilihan:opts.slice(),jwp:0}; }
+function kataQ(word,pin,em,en,letters){ return {kind:'kata',hint:word,kata:pin,em:em,en:en,pilihan:letters.slice(),jwp:0}; }
+function susunQ(arr,target,en,em){ return {kind:'susun',kata:arr.slice(),teks:target,en:en,em:em||''}; }
+function padanQ(list,tz,te){ var p=list.map(function(x){return {gambar:x[0],j:x[1]};}); return {kind:'padan',pairs:p,tajuk:tz,tajuk_en:te}; }
+
+var Q_GREET=[
+ teksQ('早上见到老师，要说什么？','In the morning, what do you say to the teacher?',['老师早安','晚安','谢谢','回家']),
+ emQ('🌙','睡觉前要说什么？','What do you say before bed?',['晚安','早安','午安','你好']),
+ emQ('🙏','别人帮你，要说什么？','Someone helps you — what do you say?',['谢谢','请坐','起立','排队']),
+ teksQ('请客人坐下，要说什么？','To ask someone to sit, what do you say?',['请坐','起立','关门','出去']),
+ emQ('🌞','中午见面要说什么？','What do you say when you meet at noon?',['午安','晚安','谢谢','名字'])
+];
+var Q_HELLO=[
+ emQ('🧑\u200d🏫','见到老师，要说……','When you see the teacher, say…',['老师好','校长好','同学好','大家好']),
+ emQ('🧑\u200d💼','见到校长，要说……','When you see the principal, say…',['校长好','老师好','妹妹好','谢谢']),
+ teksQ('对很多人打招呼，可以说……','To greet many people, you can say…',['大家好','老师好','谢谢','晚安']),
+ emQ('👫','一起玩的人，我们叫他们……','People who play together are called…',['朋友','老师','校长','妹妹']),
+ emQ('🧹','在学校打扫的人是……','The person who cleans at school is the…',['校工','校长','班长','老师'])
+];
+var Q_POLITE=[
+ emQ('🚪','想进课室，要先问……','To enter the classroom, first ask…',['请问我可以进来吗','请坐','谢谢','起立']),
+ emQ('🚶','想离开课室，要先问……','To leave the classroom, first ask…',['请问我可以出去吗','请问我可以进来吗','谢谢老师','大家好']),
+ emQ('🤫','在图书馆里，我们要……','In the library, we should be…',['安静','拍手','跑步','唱歌']),
+ emQ('👏','表演很好，大家一起……','The show was great, everyone…',['拍手','关门','坐下','排队']),
+ emQ('🍽️','在食堂打饭前要……','Before getting food in the canteen…',['排队','拍手','唱歌','画画'])
+];
+var Q_NAME=[
+ teksQ('问别人的名字，怎么说？','How do you ask someone\u2019s name?',['你叫什么名字','你今年几岁','你爱吃什么','你好']),
+ teksQ('问别人的年龄，怎么说？','How do you ask someone\u2019s age?',['你今年几岁','你叫什么名字','你好','谢谢你']),
+ susunQ(['我','叫','安安'],'我叫安安','My name is An An.','🙋'),
+ susunQ(['我','今年','七','岁'],'我今年七岁','I am seven years old.','🎂'),
+ emQ('👆','指着自己，可以说……','Pointing to yourself, you can say…',['我','你','他','们'])
+];
+var Q_NUMBER=[
+ emQ('🍎','有几个苹果？','How many apples?',['一','二','三','四']),
+ emQ('🍎🍎🍎','有几个苹果？','How many apples?',['三','二','一','四']),
+ emQ('⭐⭐⭐⭐⭐','有几颗星？','How many stars?',['五','四','六','三']),
+ padanQ([['🍎','一'],['🍎🍎','二'],['🍎🍎🍎','三']],'数一数','Match the number'),
+ emQ('✋','一只手有几根手指？','How many fingers on one hand?',['五','四','十','三'])
+];
+var Q_FAMILY=[
+ teksQ('选出 \u201cmother\u201d','Choose "mother"',['妈妈','爸爸','哥哥','姐姐']),
+ teksQ('选出 \u201cfather\u201d','Choose "father"',['爸爸','妈妈','弟弟','妹妹']),
+ teksQ('选出 \u201colder sister\u201d','Choose "older sister"',['姐姐','妹妹','妈妈','哥哥']),
+ teksQ('选出 \u201cyounger brother\u201d','Choose "younger brother"',['弟弟','哥哥','妹妹','爸爸']),
+ susunQ(['我','爱','妈妈'],'我爱妈妈','I love mum.','❤️')
+];
+var Q_BODY=[
+ emQ('🖐️','这是身体的哪个部位？','Which body part is this?',['手','脚','头','嘴']),
+ emQ('🦶','这是身体的哪个部位？','Which body part is this?',['脚','手','头','耳朵']),
+ emQ('👁️','这是身体的哪个部位？','Which body part is this?',['眼睛','鼻子','嘴','耳朵']),
+ emQ('👃','这是身体的哪个部位？','Which body part is this?',['鼻子','眼睛','嘴','脸']),
+ emQ('👂','这是身体的哪个部位？','Which body part is this?',['耳朵','眼睛','头发','嘴'])
+];
+var Q_THING=[
+ emQ('📖','这是什么？','What is this?',['书','笔','桌子','椅子']),
+ emQ('✏️','这是什么？','What is this?',['笔','书','尺','书包']),
+ emQ('🪑','这是什么？','What is this?',['椅子','桌子','书','笔']),
+ emQ('🎒','这是什么？','What is this?',['书包','桌子','椅子','尺']),
+ emQ('📏','这是什么？','What is this?',['尺','笔','书','桌子'])
+];
+var Q_COLOR=[
+ emQ('🔴','这是什么颜色？','What colour is this?',['红','蓝','黄','绿']),
+ emQ('🟡','这是什么颜色？','What colour is this?',['黄','红','蓝','黑']),
+ emQ('🔵','这是什么颜色？','What colour is this?',['蓝','绿','红','白']),
+ emQ('🟢','这是什么颜色？','What colour is this?',['绿','蓝','黄','黑']),
+ padanQ([['⚪','白'],['⚫','黑'],['🟣','紫色'],['🟠','橙色']],'颜色','Match the colour')
+];
+var Q_NATURE=[
+ emQ('☀️','这是什么？','What is this?',['太阳','云','花','雨']),
+ emQ('☁️','这是什么？','What is this?',['云','太阳','树','花']),
+ emQ('🌸','这是什么？','What is this?',['花','草','树','云']),
+ emQ('🌳','这是什么？','What is this?',['树','花','草','天']),
+ emQ('🌈','这是什么？','What is this?',['彩虹','太阳','雨','风'])
+];
+var Q_HOBBY=[
+ emQ('🎤','他在做什么？','What is he doing?',['唱歌','画画','看书','跑步']),
+ emQ('🎨','他在做什么？','What is he doing?',['画画','唱歌','游泳','跳舞']),
+ emQ('📚','他在做什么？','What is he doing?',['看书','唱歌','踢足球','游泳']),
+ emQ('🏊','他在做什么？','What is he doing?',['游泳','跑步','跳舞','画画']),
+ emQ('⚽','他在做什么？','What is he doing?',['踢足球','打羽毛球','骑自行车','跑步'])
+];
+var Q_ANIMAL=[
+ emQ('🐱','这是什么动物？','What animal is this?',['猫','兔子','鱼','鸟']),
+ emQ('🐰','这是什么动物？','What animal is this?',['兔子','猫','鸡','鸭']),
+ emQ('🐟','这是什么动物？','What animal is this?',['鱼','鸟','虫','猫']),
+ emQ('🐔','这是什么动物？','What animal is this?',['鸡','鸭','鸟','虫']),
+ emQ('🐦','这是什么动物？','What animal is this?',['鸟','鸡','鸭','鱼'])
+];
+var Q_FOOD=[
+ emQ('🍞','这是什么食物？','What food is this?',['面包','包子','面','炒饭']),
+ emQ('🍜','这是什么食物？','What food is this?',['面','面包','炒饭','点心']),
+ emQ('🍚','这是什么食物？','What food is this?',['炒饭','面','面包','拉茶']),
+ emQ('🥟','这是什么食物？','What food is this?',['包子','面包','点心','炒饭']),
+ emQ('🍵','这是什么饮料？','What drink is this?',['拉茶','面','包子','炒饭'])
+];
+var Q_GROW=[
+ susunQ(['我','长','大','了'],'我长大了','I have grown up.','🌱'),
+ susunQ(['我','会','画','画'],'我会画画','I can draw.','🎨'),
+ teksQ('选出 \u201csmile\u201d','Choose "smile"',['笑','会','画','吃']),
+ teksQ('每天早上去学校，叫……','Going to school every day is called…',['上学','回家','长大','请安']),
+ emQ('🙆','向老师行礼问好，叫……','Greeting the teacher politely is called…',['请安','上学','长大','拍手'])
+];
+var POOL_KOSA = [].concat(Q_ANIMAL,Q_FOOD,Q_COLOR.slice(0,4),Q_THING,Q_NATURE,Q_BODY,Q_HOBBY);
+
+var POOL_PADAN=[
+ padanQ([['🔴','红'],['🟡','黄'],['🔵','蓝']],'颜色','Match: colour'),
+ padanQ([['🐱','猫'],['🐰','兔子'],['🐟','鱼']],'动物','Match: animal'),
+ padanQ([['🍞','面包'],['🍜','面'],['🥟','包子']],'食物','Match: food'),
+ padanQ([['✋','手'],['🦶','脚'],['👁️','眼睛']],'身体','Match: body'),
+ padanQ([['📖','书'],['✏️','笔'],['🪑','椅子']],'文具','Match: things'),
+ padanQ([['☀️','太阳'],['🌸','花'],['🌳','树']],'大自然','Match: nature'),
+ padanQ([['🍎','一'],['🍎🍎','二'],['🍎🍎🍎','三']],'数字','Match: number'),
+ padanQ([['🌈','彩虹'],['☁️','云'],['🌧️','雨']],'天气','Match: weather')
+];
+var POOL_HURUF=[
+ kataQ('猫','m_o','🐱','cat · m\u0101o',['a','o','e','u']),
+ kataQ('鱼','y_','🐟','fish · y\u00fa',['u','a','o','i']),
+ kataQ('书','sh_','📖','book · sh\u016b',['u','a','e','o']),
+ kataQ('花','hu_','🌸','flower · hu\u0101',['a','o','e','i']),
+ kataQ('红','h_ng','🔴','red · h\u00f3ng',['o','a','e','u']),
+ kataQ('手','sh_u','✋','hand · sh\u01d2u',['o','a','e','u']),
+ kataQ('头','t_u','🧑','head · t\u00f3u',['o','a','e','u']),
+ kataQ('兔','t_','🐰','rabbit · t\u00f9',['u','a','o','e']),
+ kataQ('鸟','ni_o','🐦','bird · ni\u01ceo',['a','o','e','u']),
+ kataQ('笔','b_','✏️','pen · b\u01d0',['i','a','o','u']),
+ kataQ('妈','m_','👩','mum · m\u0101',['a','o','e','i']),
+ kataQ('爸','b_','👨','dad · b\u00e0',['a','o','e','u'])
+];
+var POOL_ISI=[
+ teksQ('同学回答老师：「老师____！」','Pupils reply: "Teacher ____!"',['早安','晚安','谢谢','出去']),
+ teksQ('我爱爸爸，也爱____。','I love dad, and also love ____.',['妈妈','桌子','书','猫']),
+ teksQ('今天天气好，天很____。','Nice weather, the sky is very ____.',['蓝','红','黑','大']),
+ teksQ('今天天气好，草很____。','Nice weather, the grass is very ____.',['绿','蓝','白','黑']),
+ teksQ('下课了，同学们去____排队。','After class, pupils queue at the ____.',['食堂','回家','上学','画画']),
+ teksQ('同同在吃____。','Tong Tong is eating ____.',['包子','拉茶','跑步','唱歌']),
+ teksQ('我有一个好爸爸，也有一个好____。','I have a good dad and a good ____.',['妈妈','老师','朋友','弟弟']),
+ teksQ('安安有一只大花____。','An An has a big ____.',['猫','鱼','书','花']),
+ teksQ('我和朋友一起____，一起笑。','My friend and I ____ together and laugh together.',['玩','吃','看','坐'])
+];
+var POOL_AYAT=[
+ susunQ(['老师','早安'],'老师早安','Good morning, teacher.'),
+ susunQ(['谢谢','老师'],'谢谢老师','Thank you, teacher.'),
+ susunQ(['我','爱','爸爸'],'我爱爸爸','I love dad.'),
+ susunQ(['你','好'],'你好','Hello.'),
+ susunQ(['请','坐'],'请坐','Please sit.'),
+ susunQ(['我','叫','同同'],'我叫同同','My name is Tong Tong.'),
+ susunQ(['同学','早安'],'同学早安','Good morning, classmates.'),
+ susunQ(['校长','好'],'校长好','Hello, principal.')
+];
+var POOL_AYATGB=[
+ susunQ(['今天','天气','好'],'今天天气好','The weather is nice today.','🌞'),
+ susunQ(['安安','在','吃','面包'],'安安在吃面包','An An is eating bread.','🍞'),
+ susunQ(['我','有','一只','猫'],'我有一只猫','I have a cat.','🐱'),
+ susunQ(['我们','在','公园','画画'],'我们在公园画画','We draw in the park.','🎨'),
+ susunQ(['我们','一起','上学'],'我们一起上学','We go to school together.','🏫'),
+ susunQ(['我','爱','我的','家人'],'我爱我的家人','I love my family.','❤️'),
+ susunQ(['这','是','我的','书'],'这是我的书','This is my book.','📖'),
+ susunQ(['我','长大','了'],'我长大了','I have grown up.','⭐')
+];
+
+var DATA=[
+ {emoji:'🏫',nama:'校园生活',nama_en:'School Life',unit:[
+   {nama:'老师早安',nama_en:'Greetings',latihan:[
+     {ikon:'🌅',tajuk:'问候语',tajuk_en:'Greetings',arahan:'选出正确的问候语',arahan_en:'Choose the right greeting',soalan:Q_GREET}]},
+   {nama:'你好',nama_en:'Hello & People',latihan:[
+     {ikon:'👋',tajuk:'打招呼',tajuk_en:'Say Hello',arahan:'看图，选答案',arahan_en:'Look and choose',soalan:Q_HELLO}]},
+   {nama:'请 · 请问',nama_en:'Polite Words',latihan:[
+     {ikon:'🙋',tajuk:'礼貌用语',tajuk_en:'Polite Words',arahan:'看图，选答案',arahan_en:'Look and choose',soalan:Q_POLITE}]}
+ ]},
+ {emoji:'👨\u200d👩\u200d👧',nama:'我和家人',nama_en:'Me & Family',unit:[
+   {nama:'你我他',nama_en:'Name & Number',latihan:[
+     {ikon:'🙂',tajuk:'名字和年龄',tajuk_en:'Name & Age',arahan:'选出正确的句子',arahan_en:'Choose the right sentence',soalan:Q_NAME},
+     {ikon:'🔢',tajuk:'数一数',tajuk_en:'Count 1\u201310',arahan:'数一数，选答案',arahan_en:'Count and choose',soalan:Q_NUMBER}]},
+   {nama:'我的家人',nama_en:'My Family',latihan:[
+     {ikon:'👪',tajuk:'家人',tajuk_en:'Family',arahan:'选出正确的家人',arahan_en:'Choose the family member',soalan:Q_FAMILY}]},
+   {nama:'我的身体',nama_en:'My Body',latihan:[
+     {ikon:'🧍',tajuk:'身体部位',tajuk_en:'Body Parts',arahan:'看图，选答案',arahan_en:'Look and choose',soalan:Q_BODY}]}
+ ]},
+ {emoji:'🎨',nama:'多彩天地',nama_en:'Colourful World',unit:[
+   {nama:'我的小天地',nama_en:'My Things',latihan:[
+     {ikon:'✏️',tajuk:'文具',tajuk_en:'Stationery',arahan:'看图，选答案',arahan_en:'Look and choose',soalan:Q_THING}]},
+   {nama:'七彩世界',nama_en:'Colours',latihan:[
+     {ikon:'🌈',tajuk:'颜色',tajuk_en:'Colours',arahan:'选出正确的颜色',arahan_en:'Choose the colour',soalan:Q_COLOR}]},
+   {nama:'今天天气好',nama_en:'Nature',latihan:[
+     {ikon:'🌳',tajuk:'大自然',tajuk_en:'Nature',arahan:'看图，选答案',arahan_en:'Look and choose',soalan:Q_NATURE}]}
+ ]},
+ {emoji:'🐾',nama:'爱好与朋友',nama_en:'Hobbies & Friends',unit:[
+   {nama:'爱好',nama_en:'Hobbies',latihan:[
+     {ikon:'⚽',tajuk:'我的爱好',tajuk_en:'My Hobbies',arahan:'他在做什么？',arahan_en:'What is he doing?',soalan:Q_HOBBY}]},
+   {nama:'好朋友',nama_en:'Animals',latihan:[
+     {ikon:'🐱',tajuk:'小动物',tajuk_en:'Little Animals',arahan:'这是什么动物？',arahan_en:'What animal is this?',soalan:Q_ANIMAL}]}
+ ]},
+ {emoji:'🍜',nama:'美食与成长',nama_en:'Food & Growing Up',unit:[
+   {nama:'你爱吃什么',nama_en:'Food',latihan:[
+     {ikon:'🍞',tajuk:'美食',tajuk_en:'Food',arahan:'这是什么食物？',arahan_en:'What food is this?',soalan:Q_FOOD}]},
+   {nama:'我长大了',nama_en:'I Grew Up',latihan:[
+     {ikon:'🌟',tajuk:'我学会了',tajuk_en:'I Have Learnt',arahan:'选出正确的答案',arahan_en:'Choose the correct answer',soalan:Q_GROW}]}
+ ]}
+];
+
+var LAT_BY_ID={};
+(function(){
+  for(var ti=0;ti<DATA.length;ti++){ var t=DATA[ti];
+    for(var ui=0;ui<t.unit.length;ui++){ var u=t.unit[ui];
+      for(var li=0;li<u.latihan.length;li++){ var id='t'+ti+'u'+ui+'l'+li; u.latihan[li].id=id; LAT_BY_ID[id]=u.latihan[li]; }
+    }
+  }
+})();
+
+var BAHAGIAN=[
+ {nama:'Kosa Kata',nama_zh:'词汇',pool:POOL_KOSA,n:4,step:4},
+ {nama:'Match Pictures',nama_zh:'看图配对',pool:POOL_PADAN,n:3,step:3},
+ {nama:'Make a Sentence',nama_zh:'造句',pool:POOL_AYAT,n:3,step:3},
+ {nama:'Missing Letters',nama_zh:'拼音填字母',pool:POOL_HURUF,n:3,step:4},
+ {nama:'Fill in the Blank',nama_zh:'填空',pool:POOL_ISI,n:3,step:3},
+ {nama:'Build a Sentence',nama_zh:'看图造句',pool:POOL_AYATGB,n:3,step:3}
+];
+function pickRot(pool,n,offset){ var out=[]; if(!pool.length) return out; for(var i=0;i<n;i++){ out.push(pool[(offset+i)%pool.length]); } return out; }
+function buildModulSets(count){
+  var sets=[];
+  for(var s=0;s<count;s++){
+    var bah=[];
+    for(var b=0;b<BAHAGIAN.length;b++){ var def=BAHAGIAN[b]; bah.push({nama:def.nama,nama_zh:def.nama_zh,soalan:pickRot(def.pool,def.n,s*def.step)}); }
+    sets.push({bahagian:bah});
+  }
+  return sets;
+}
+var MODUL_SETS=buildModulSets(10);
+
+function validateQuestion(q){
+  var errs=[];
+  if(q.kind==='teks'||q.kind==='em'){
+    if(!Array.isArray(q.pilihan)||q.pilihan.length<2) errs.push('pilihan<2');
+    if(typeof q.jwp!=='number'||q.jwp<0||q.jwp>=q.pilihan.length) errs.push('jwp out of range');
+    var ans=q.pilihan[q.jwp];
+    if(q.teks && q.teks.indexOf(ans)>=0) errs.push('answer leak: "'+ans+'" in stem "'+q.teks+'"');
+  }else if(q.kind==='kata'){
+    var blanks=(q.kata.match(/_/g)||[]).length;
+    if(blanks!==1) errs.push('kata must have exactly one _ ('+q.kata+')');
+    if(typeof q.jwp!=='number'||q.jwp<0||q.jwp>=q.pilihan.length) errs.push('jwp out of range');
+  }else if(q.kind==='padan'){
+    if(!q.pairs||q.pairs.length<2||q.pairs.length>4) errs.push('padan needs 2-4 pairs');
+  }else if(q.kind==='susun'){
+    if(!q.kata||q.kata.length<2) errs.push('susun needs >=2 words');
+  }else{ errs.push('unknown kind '+q.kind); }
+  return errs;
+}
+function validateAll(){
+  var problems=[],seen=[];
+  DATA.forEach(function(t){t.unit.forEach(function(u){u.latihan.forEach(function(l){
+    l.soalan.forEach(function(q,i){ validateQuestion(q).forEach(function(e){ problems.push(l.id+' #'+(i+1)+': '+e); }); seen.push(q); });
+  });});});
+  [POOL_KOSA,POOL_PADAN,POOL_HURUF,POOL_ISI,POOL_AYAT,POOL_AYATGB].forEach(function(p,pi){
+    p.forEach(function(q,i){ if(seen.indexOf(q)<0) validateQuestion(q).forEach(function(e){ problems.push('pool'+pi+' #'+(i+1)+': '+e); }); });
+  });
+  MODUL_SETS.forEach(function(set,si){
+    if(set.bahagian.length!==6) problems.push('set'+si+' not 6 sections');
+    var tot=set.bahagian.reduce(function(a,b){return a+b.soalan.length;},0);
+    if(tot<18||tot>21) problems.push('set'+si+' has '+tot+' soalan (want ~19-20)');
+  });
+  return problems;
+}
+function startEngine(){
+  var app=document.getElementById('app');
+
+  function loadRekod(){ try{ return JSON.parse(localStorage.getItem(KEY_REKOD)||'{}')||{}; }catch(e){ return {}; } }
+  function saveRekod(r){ try{ localStorage.setItem(KEY_REKOD,JSON.stringify(r)); }catch(e){} }
+  function loadBunyi(){ try{ var v=localStorage.getItem(KEY_BUNYI); return v===null?true:v==='1'; }catch(e){ return true; } }
+  function saveBunyi(v){ try{ localStorage.setItem(KEY_BUNYI,v?'1':'0'); }catch(e){} }
+
+  var state={ sound:loadBunyi(), pickMany:false, selected:{}, lastModulSet:-1 };
+
+  var actx=null;
+  function ac(){ if(!actx){ try{ actx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){ actx=null; } } return actx; }
+  function tone(freq,start,dur,type,vol){
+    var c=ac(); if(!c) return;
+    var o=c.createOscillator(),g=c.createGain();
+    o.type=type||'sine'; o.frequency.value=freq; o.connect(g); g.connect(c.destination);
+    var t=c.currentTime+start;
+    g.gain.setValueAtTime(0.0001,t);
+    g.gain.exponentialRampToValueAtTime(vol||0.18,t+0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+    o.start(t); o.stop(t+dur+0.02);
+  }
+  function sCorrect(){ if(!state.sound) return; tone(660,0,0.12,'sine',0.2); tone(880,0.1,0.16,'sine',0.2); }
+  function sWrong(){ if(!state.sound) return; tone(220,0,0.18,'square',0.14); tone(160,0.12,0.22,'square',0.14); }
+  function sFanfare(){ if(!state.sound) return; var n=[523,659,784,1047]; for(var i=0;i<n.length;i++) tone(n[i],i*0.12,0.22,'triangle',0.2); tone(1319,0.5,0.4,'triangle',0.2); }
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function tr(zh){ return TRANS[zh]||''; }
+  function biStem(zh,en){ return '<span class="zh">'+esc(zh)+'</span>'+(en?'<span class="en">'+esc(en)+'</span>':''); }
+  function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+
+  function renderStart(){
+    app.innerHTML=''
+    +'<div class="sky"><div class="sun"></div><div class="cloud c1"></div><div class="cloud c2"></div>'
+    +'<div class="head-row"><div class="mascot">🐌</div><div>'
+    +'<div class="title-zh"><b>国小华语 · 一年级</b></div>'
+    +'<div class="title-en">Bahasa Cina Sekolah Kebangsaan · Tahun 1</div>'
+    +'<div class="slogan">一起学华语！<span class="en">Let\u2019s learn Chinese together!</span></div>'
+    +'</div></div></div>'
+    +'<div class="toolbar"><span class="pill"><span class="zh">点一点作答</span> · tap</span>'
+    +'<button class="pill" id="soundBtn">'+(state.sound?'🔊':'🔇')+' <span class="zh">声音</span></button></div>'
+    +'<div class="menu">'
+    +menuBtn('📂','选择练习','Choose Exercise','go_choose')
+    +menuBtn('🪜','逐步复习','Step-by-Step Revision','go_modul')
+    +menuBtn('⚡','快速练习','Quick Practice','go_pantas')
+    +'</div>'
+    +'<div class="note">👨\u200d👩\u200d👧 <b>给家长：</b>孩子只需点一点就能作答，全部自动批改。'
+    +'<span class="en">For parents: children only tap to answer — everything is checked automatically.</span></div>'
+    +footerHTML();
+    document.getElementById('soundBtn').onclick=function(){ state.sound=!state.sound; saveBunyi(state.sound); if(state.sound){ ac(); sCorrect(); } renderStart(); };
+    document.getElementById('go_choose').onclick=function(){ ac(); renderChoose(); };
+    document.getElementById('go_modul').onclick=function(){ ac(); startModul(); };
+    document.getElementById('go_pantas').onclick=function(){ ac(); startPantas(); };
+  }
+  function menuBtn(ic,zh,en,id){ return '<button class="mbtn" id="'+id+'"><span class="ic">'+ic+'</span><span><span class="zh">'+zh+'</span><span class="en">'+en+'</span></span></button>'; }
+  function footerHTML(){ return '<div class="footer">Dibangunkan oleh Hafiz Husaini Harimanto<br>Berdasarkan Buku Teks &amp; DSKP KSSR Bahasa Cina Tahun 1</div>'; }
+
+  function renderChoose(){
+    var rek=loadRekod();
+    var html=''
+    +'<div class="sky" style="padding-bottom:14px"><div class="sun"></div><div class="cloud c1"></div>'
+    +'<div class="head-row"><div class="mascot" style="font-size:34px">🐌</div><div>'
+    +'<div class="title-zh" style="font-size:22px"><b>选择练习</b></div>'
+    +'<div class="title-en">Choose Exercise</div></div></div></div>'
+    +'<div class="toolbar"><button class="pill" id="backBtn">⬅ <span class="zh">菜单</span> Menu</button>'
+    +'<button class="pill" id="manyBtn">'+(state.pickMany?'☑':'☐')+' <span class="zh">选择多个</span> Pick Many</button></div>'
+    +'<div class="acc">';
+    for(var ti=0;ti<DATA.length;ti++){
+      var t=DATA[ti];
+      html+='<div class="tema'+(ti===0?' open':'')+'" data-tema="'+ti+'">'
+       +'<div class="tema-h"><span class="ic">'+t.emoji+'</span><span><span class="zh">'+esc(t.nama)+'</span><span class="en">'+esc(t.nama_en)+'</span></span><span class="arrow">▸</span></div>'
+       +'<div class="tema-body">';
+      for(var ui=0;ui<t.unit.length;ui++){
+        var u=t.unit[ui];
+        html+='<div class="unit"><div class="unit-name">'+esc(u.nama)+' <span class="en">'+esc(u.nama_en)+'</span></div><div class="cards">';
+        for(var li=0;li<u.latihan.length;li++){
+          var l=u.latihan[li]; var best=rek['L_'+l.id];
+          html+='<button class="lcard'+(state.selected[l.id]?' sel':'')+'" data-id="'+l.id+'">'
+           +'<span class="tick">✓</span><div class="ic">'+l.ikon+'</div>'
+           +'<div class="zh">'+esc(l.tajuk)+'</div><span class="en">'+esc(l.tajuk_en)+'</span>'
+           +(best!=null?'<div class="best">⭐ Terbaik '+best+'%</div>':'')
+           +'</button>';
+        }
+        html+='</div></div>';
+      }
+      html+='</div></div>';
+    }
+    html+='</div>';
+    html+='<div class="startbar" id="startbar"><button id="startSel">开始练习 (<span id="selN">0</span>)<span class="en">Start selected exercises</span></button></div>';
+    app.innerHTML=html;
+    document.getElementById('backBtn').onclick=renderStart;
+    document.getElementById('manyBtn').onclick=function(){ state.pickMany=!state.pickMany; if(!state.pickMany) state.selected={}; renderChoose(); };
+    app.querySelectorAll('.tema-h').forEach(function(h){ h.onclick=function(){ h.parentNode.classList.toggle('open'); }; });
+    app.querySelectorAll('.lcard').forEach(function(c){
+      c.onclick=function(){
+        var id=c.getAttribute('data-id');
+        if(state.pickMany){
+          if(state.selected[id]){ delete state.selected[id]; c.classList.remove('sel'); }
+          else { state.selected[id]=true; c.classList.add('sel'); }
+          updateStartbar();
+        }else{ startSingle(id); }
+      };
+    });
+    updateStartbar();
+    document.getElementById('startSel').onclick=function(){ var ids=Object.keys(state.selected); if(!ids.length) return; startCombined(ids); };
+  }
+  function updateStartbar(){
+    var bar=document.getElementById('startbar'); if(!bar) return;
+    var n=Object.keys(state.selected).length;
+    document.getElementById('selN').textContent=n;
+    if(state.pickMany && n>0) bar.classList.add('show'); else bar.classList.remove('show');
+  }
+
+  function newSession(queue,tz,te,recordKey){ state.session={ queue:queue, idx:0, score:0, total:queue.length, title_zh:tz, title_en:te, recordKey:recordKey }; renderQuestion(); }
+  function startSingle(id){ var l=LAT_BY_ID[id]; newSession(shuffle(l.soalan), l.tajuk, l.tajuk_en, 'L_'+id); }
+  function startCombined(ids){ var q=[]; ids.forEach(function(id){ q=q.concat(LAT_BY_ID[id].soalan); }); newSession(shuffle(q),'组合练习','Combined Practice',null); state.pickMany=false; state.selected={}; }
+  function startPantas(){ var all=[]; DATA.forEach(function(t){t.unit.forEach(function(u){u.latihan.forEach(function(l){ all=all.concat(l.soalan); });});}); newSession(shuffle(all).slice(0,10),'快速练习','Quick Practice','P_pantas'); }
+  function startModul(){
+    var idx=Math.floor(Math.random()*MODUL_SETS.length);
+    if(MODUL_SETS.length>1){ while(idx===state.lastModulSet){ idx=Math.floor(Math.random()*MODUL_SETS.length); } }
+    state.lastModulSet=idx;
+    var set=MODUL_SETS[idx]; var queue=[];
+    set.bahagian.forEach(function(b,bi){
+      b.soalan.forEach(function(q){
+        var copy={}; for(var k in q) copy[k]=q[k];
+        copy._bahagian='Set '+(idx+1)+'/'+MODUL_SETS.length+' · Part '+String.fromCharCode(65+bi)+' · '+b.nama_zh+' / '+b.nama;
+        queue.push(copy);
+      });
+    });
+    newSession(queue,'逐步复习 · Set '+(idx+1),'Step-by-Step · Set '+(idx+1),'M_'+idx);
+  }
+
+  function renderQuestion(){
+    var S=state.session; var q=S.queue[S.idx];
+    var pct=Math.round((S.idx)/S.total*100);
+    app.innerHTML=''
+    +'<div class="ex-top"><button class="pill" id="quit">✖</button>'
+    +'<div class="prog"><i style="width:'+pct+'%"></i></div>'
+    +'<span class="stars">⭐ '+S.score+'</span>'
+    +'<button class="pill" id="snd">'+(state.sound?'🔊':'🔇')+'</button></div>'
+    +'<div class="qcard" id="qcard"></div>'
+    +'<div class="feedback" id="fb"></div>'
+    +'<button class="nextbtn" id="next">下一题 <span class="en">Next</span></button>';
+    document.getElementById('quit').onclick=renderStart;
+    document.getElementById('snd').onclick=function(){ state.sound=!state.sound; saveBunyi(state.sound); document.getElementById('snd').textContent=state.sound?'🔊':'🔇'; };
+    var qc=document.getElementById('qcard');
+    var head=q._bahagian?'<div class="arahan">'+esc(q._bahagian)+'</div>':'';
+    if(q.kind==='teks') renderMCQ(qc,q,head,false);
+    else if(q.kind==='em') renderMCQ(qc,q,head,true);
+    else if(q.kind==='kata') renderKata(qc,q,head);
+    else if(q.kind==='padan') renderPadan(qc,q,head);
+    else if(q.kind==='susun') renderSusun(qc,q,head);
+  }
+
+  function afterAnswer(correct,correctText){
+    var S=state.session; if(correct) S.score++;
+    var fb=document.getElementById('fb');
+    if(correct){ fb.className='feedback ok'; fb.innerHTML='答对了！<span class="en">Correct! 🎉</span>'; sCorrect(); }
+    else { fb.className='feedback no'; fb.innerHTML='再想想 <span class="en">Try again</span>'+(correctText?'<small>正确答案 / Answer: '+esc(correctText)+'</small>':''); sWrong(); }
+    var nb=document.getElementById('next'); nb.classList.add('show');
+    document.querySelector('.stars').textContent='⭐ '+S.score;
+    nb.onclick=function(){ S.idx++; if(S.idx>=S.total) renderFinish(); else renderQuestion(); };
+  }
+
+  function renderMCQ(qc,q,head,isEm){
+    var html=head;
+    if(isEm && q.em) html+='<div class="emoji">'+q.em+'</div>';
+    html+='<div class="stem">'+biStem(q.teks,q.en)+'</div><div class="opts">';
+    var order=shuffle(q.pilihan.map(function(p,i){return {p:p,i:i};}));
+    order.forEach(function(o){ var en=tr(o.p); html+='<button class="opt" data-i="'+o.i+'"><span class="zh">'+esc(o.p)+'</span>'+(en?'<span class="en">'+esc(en)+'</span>':'')+'</button>'; });
+    html+='</div>'; qc.innerHTML=html;
+    var btns=qc.querySelectorAll('.opt');
+    btns.forEach(function(b){
+      b.onclick=function(){
+        var chosen=parseInt(b.getAttribute('data-i'),10); var correct=chosen===q.jwp;
+        btns.forEach(function(x){ x.disabled=true; var xi=parseInt(x.getAttribute('data-i'),10); if(xi===q.jwp) x.classList.add('ok'); else if(x===b) x.classList.add('no'); });
+        afterAnswer(correct,q.pilihan[q.jwp]);
+      };
+    });
+  }
+  function renderKata(qc,q,head){
+    var pin=esc(q.kata).replace(/_/,'<span class="bl">?</span>');
+    var html=head+(q.em?'<div class="emoji">'+q.em+'</div>':'')
+     +'<div class="kata-pin">'+pin+'</div>'
+     +'<div class="stem" style="font-size:18px">'+biStem(q.hint,q.en)+'</div><div class="opts">';
+    var order=shuffle(q.pilihan.map(function(p,i){return {p:p,i:i};}));
+    order.forEach(function(o){ html+='<button class="opt letter" data-i="'+o.i+'"><span class="zh">'+esc(o.p)+'</span></button>'; });
+    html+='</div>'; qc.innerHTML=html;
+    var btns=qc.querySelectorAll('.opt');
+    btns.forEach(function(b){
+      b.onclick=function(){
+        var chosen=parseInt(b.getAttribute('data-i'),10); var correct=chosen===q.jwp;
+        btns.forEach(function(x){ x.disabled=true; var xi=parseInt(x.getAttribute('data-i'),10); if(xi===q.jwp) x.classList.add('ok'); else if(x===b) x.classList.add('no'); });
+        afterAnswer(correct,q.kata.replace('_',q.pilihan[q.jwp]));
+      };
+    });
+  }
+  function renderPadan(qc,q,head){
+    var left=q.pairs.map(function(p,i){return {v:p.gambar,i:i};});
+    var right=shuffle(q.pairs.map(function(p,i){return {v:p.j,i:i};}));
+    var html=head+'<div class="arahan">连一连：图配词 <span class="en">Match picture &amp; word</span></div><div class="padan"><div class="pcol" id="pleft">';
+    left.forEach(function(o){ html+='<div class="pcell" data-i="'+o.i+'"><span class="big">'+o.v+'</span></div>'; });
+    html+='</div><div class="pcol" id="pright">';
+    right.forEach(function(o){ var en=tr(o.v); html+='<div class="pcell" data-i="'+o.i+'"><span class="zh">'+esc(o.v)+'</span>'+(en?'<span class="en">'+esc(en)+'</span>':'')+'</div>'; });
+    html+='</div></div>'; qc.innerHTML=html;
+    var pick=null, matched=0, mistakes=0;
+    var lc=qc.querySelectorAll('#pleft .pcell'), rc=qc.querySelectorAll('#pright .pcell');
+    function clearPick(){ if(pick){ pick.classList.remove('pick'); } pick=null; }
+    lc.forEach(function(c){ c.onclick=function(){ if(c.classList.contains('done')) return; if(pick===c){ clearPick(); return; } clearPick(); pick=c; c.classList.add('pick'); }; });
+    rc.forEach(function(c){
+      c.onclick=function(){
+        if(c.classList.contains('done')||!pick) return;
+        var li=pick.getAttribute('data-i'), ri=c.getAttribute('data-i');
+        if(li===ri){
+          pick.classList.remove('pick'); pick.classList.add('done'); c.classList.add('done'); pick=null;
+          matched++; if(state.sound) tone(700,0,0.08,'sine',0.15);
+          if(matched===q.pairs.length){ afterAnswer(mistakes===0,'全部配对正确'); }
+        }else{
+          mistakes++; c.classList.add('shake'); pick.classList.add('shake'); sWrong();
+          var pk=pick; setTimeout(function(){ c.classList.remove('shake'); if(pk)pk.classList.remove('shake'); },360); clearPick();
+        }
+      };
+    });
+  }
+  function renderSusun(qc,q,head){
+    var target=q.kata.join('');
+    var tiles=shuffle(q.kata.map(function(w,i){return {w:w,i:i,used:false};}));
+    var ans=[];
+    qc.innerHTML=head+(q.em?'<div class="emoji">'+q.em+'</div>':'')
+     +'<div class="arahan">排出正确的句子 <span class="en">Arrange the sentence</span>'+(q.en?' · '+esc(q.en):'')+'</div>'
+     +'<div class="susun-ans" id="sans"></div><div class="susun-tiles" id="stiles"></div>';
+    var ansEl=document.getElementById('sans'), tilesEl=document.getElementById('stiles');
+    function draw(){
+      tilesEl.innerHTML='';
+      tiles.forEach(function(t){
+        var b=document.createElement('button'); b.className='tile'+(t.used?' used':'');
+        var en=tr(t.w); b.innerHTML=esc(t.w)+(en?'<span class="en">'+esc(en)+'</span>':'');
+        b.onclick=function(){ if(t.used||state.session._locked) return; t.used=true; ans.push(t); drawAns(); draw(); check(); };
+        tilesEl.appendChild(b);
+      });
+    }
+    function drawAns(){
+      ansEl.innerHTML='';
+      if(!ans.length){ ansEl.innerHTML='<span class="en" style="opacity:.7">点字块排句子 · tap the tiles</span>'; return; }
+      ans.forEach(function(t){
+        var b=document.createElement('button'); b.className='tile inans'; b.innerHTML=esc(t.w);
+        b.onclick=function(){ if(state.session._locked) return; t.used=false; var p=ans.indexOf(t); if(p>=0)ans.splice(p,1); drawAns(); draw(); };
+        ansEl.appendChild(b);
+      });
+    }
+    function check(){ if(ans.length!==q.kata.length) return; state.session._locked=true; var made=ans.map(function(t){return t.w;}).join(''); afterAnswer(made===target,target); }
+    state.session._locked=false; drawAns(); draw();
+  }
+
+  function renderFinish(){
+    var S=state.session; var pct=Math.round(S.score/S.total*100);
+    var stars=1; if(pct>=90) stars=3; else if(pct>=60) stars=2;
+    var badge='🌱',btitle='再接再厉',bten='Keep Trying';
+    if(pct===100){ badge='🏆'; btitle='满分！'; bten='Full Marks'; }
+    else if(pct>=90){ badge='🏅'; btitle='优秀！'; bten='Excellent'; }
+    else if(pct>=60){ badge='🌟'; btitle='很棒！'; bten='Good Job'; }
+    var isNew=false;
+    if(S.recordKey){ var rek=loadRekod(); var prev=rek[S.recordKey]; if(prev==null || pct>prev){ rek[S.recordKey]=pct; saveRekod(rek); isNew=true; } }
+    if(pct===100) sFanfare(); else if(pct>=60) sCorrect();
+    var starHTML=''; for(var i=0;i<3;i++) starHTML+='<span'+(i<stars?'':' class="off"')+'>⭐</span>';
+    app.innerHTML='<div class="finish"><div class="badge">'+badge+'</div>'
+    +'<div class="ftitle">'+btitle+'<span class="en">'+bten+'</span></div>'
+    +'<div class="endstars">'+starHTML+'</div>'
+    +'<div class="scoreline">'+S.score+' / '+S.total+' · '+pct+'%<span class="en">'+esc(S.title_zh)+' / '+esc(S.title_en)+'</span></div>'
+    +(isNew?'<div class="newrec">🎉 新纪录！ Rekod baharu!</div>':'')
+    +'<div class="frow"><button class="b-again" id="again">再试一次<span class="en">Try Again</span></button>'
+    +'<button class="b-menu" id="menu">菜单<span class="en">Menu</span></button></div></div>'+footerHTML();
+    document.getElementById('again').onclick=function(){
+      var rk=S.recordKey;
+      if(rk && rk.indexOf('M_')===0){ startModul(); }
+      else if(rk==='P_pantas'){ startPantas(); }
+      else { newSession(shuffle(S.queue), S.title_zh, S.title_en, rk); }
+    };
+    document.getElementById('menu').onclick=renderStart;
+  }
+
+  try{ var probs=validateAll(); if(probs.length){ console.warn('SPA validation issues:',probs); } else { console.log('SPA validation: OK'); } }catch(e){ console.warn(e); }
+  renderStart();
+}
+
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startEngine);
+  else startEngine();
+}
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { DATA:DATA, MODUL_SETS:MODUL_SETS, buildModulSets:buildModulSets, validateAll:validateAll,
+    POOL_KOSA:POOL_KOSA, POOL_PADAN:POOL_PADAN, POOL_HURUF:POOL_HURUF, POOL_ISI:POOL_ISI, POOL_AYAT:POOL_AYAT, POOL_AYATGB:POOL_AYATGB };
+}
+</script>
+</body>
+</html>
